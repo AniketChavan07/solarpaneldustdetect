@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Panel Cleanliness Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+        }
+        img {
+            display: block;
+            margin: 10px auto;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Solar Panel Image</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if result %}
+        <h2>Result: {{ result }}</h2>
+        <p>Cleanliness Percentage: {{ cleanliness_percentage }}%</p>
+        
+        <div class="image-container">
+            <h3>Original Image:</h3>
+            <img src="{{ original_image_url }}" alt="Original Image" width="500"/>
+            
+            <h3>Processed Image (with dust regions highlighted):</h3>
+            <img src="{{ processed_image_url }}" alt="Processed Image" width="500"/>
+        </div>
+    {% endif %}
+</body>
+</html>
